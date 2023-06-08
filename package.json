@@ -1,0 +1,12 @@
+{
+  "name": "@devspeed/filterjs",
+  "version": "2.0.0",
+  "description": "filter slurs",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "scripts": {
+    "test": "node ./test/index.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
