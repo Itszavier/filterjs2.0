@@ -19,12 +19,15 @@ export class Filter {
         this.options = options;
     }
 
-    hasBlacklistWord(inputText?: string, callBack?: hasBlacklistWordCallback) {
-        const text = inputText || this.text;
+    hasBlacklistWord(callBack?: hasBlacklistWordCallback) {
+        if (!this.text) {
+            throw new Error("You must specfic a string to vaildate");
 
-        if (!text) {
-            throw new Error("could not find text: please specfic the text you want to check");
         }
+
+        const text = this.text;
+
+
 
         const spiltedText = text.toLowerCase().split(" ");
 
@@ -50,7 +53,12 @@ export class Filter {
     }
 
     censor(inputText: string | null) {
-        const text = inputText || this.text;
+        if (!this.text) {
+            throw new Error("You must specfic a string to censor");
+
+        }
+
+        const text = this.text;
 
         if (!text) {
             throw new Error("could not find text: please specfic the text you want to censer as paramater")

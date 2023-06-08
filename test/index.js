@@ -8,8 +8,8 @@ console.log(filter.hasBlacklistWord());
 console.log(filter.censor());
 
 
-console.log(hasBlacklistWord("i love you BitCH", {}, (match) => {
-    console.log(match)
+console.log(hasBlacklistWord("i love you BitCH", null, (match) => {
+    console.log(match);
 }));
 
 

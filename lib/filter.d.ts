@@ -9,7 +9,7 @@ export declare class Filter {
     text: string | undefined;
     options: IFilterOptions | undefined;
     constructor(text?: string, options?: IFilterOptions);
-    hasBlacklistWord(inputText?: string, callBack?: hasBlacklistWordCallback): boolean;
+    hasBlacklistWord(callBack?: hasBlacklistWordCallback): boolean;
     censor(inputText: string | null): string;
     customblacklist(...words: string[]): string[] | undefined;
 }
