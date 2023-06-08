@@ -7,9 +7,11 @@ export function hasBlacklistWord(inputText?: string, customBlacklist?: string[],
         throw new Error("could not find text: please specfic the text you want to check");
     }
 
-    const blacklistWord = customBlacklist || badwords;
+    let blacklistWord = customBlacklist || badwords;
 
-
+    if (typeof blacklistWord !== "function") {
+        throw new Error("Typeof customBlacklist must be a string[] || null");
+    }
 
     const text = inputText;
     const spiltedText = text.toLowerCase().split(" ");
