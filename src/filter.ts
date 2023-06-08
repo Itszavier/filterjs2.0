@@ -11,20 +11,20 @@ export interface IFilterOptions {
 export type hasBlacklistWordCallback = (match: { included: boolean, text: string }[] | null) => void;
 
 export class Filter {
-    text: string;
-    options: IFilterOptions;
+    text: string | undefined;
+    options: IFilterOptions | undefined;
 
-    constructor(text: string, options: IFilterOptions) {
+    constructor(text?: string, options?: IFilterOptions) {
         this.text = text;
         this.options = options;
     }
 
-    hasBlacklistWord(inputText: string, callBack?: hasBlacklistWordCallback) {
-        if (!inputText && !this.text) {
+    hasBlacklistWord(inputText?: string, callBack?: hasBlacklistWordCallback) {
+        const text = inputText || this.text;
+
+        if (!text) {
             throw new Error("could not find text: please specfic the text you want to check");
         }
-
-        const text = inputText || this.text;
 
         const spiltedText = text.toLowerCase().split(" ");
 
@@ -49,13 +49,12 @@ export class Filter {
         }
     }
 
-    censor(inputText: string) {
-        if (!this.text && !inputText) {
-            throw new Error("could not find text: please specfic the text you want to censer as paramater")
-        }
+    censor(inputText: string | null) {
         const text = inputText || this.text;
 
-
+        if (!text) {
+            throw new Error("could not find text: please specfic the text you want to censer as paramater")
+        }
 
         const blackListWords = this.options?.customBlacklist || badwords;
 
@@ -74,7 +73,10 @@ export class Filter {
         if (!words) {
             return;
         }
-        this.options.customBlacklist = words;
+
+        if (this.options) {
+            return this.options.customBlacklist = words;
+        }
     }
 
 }

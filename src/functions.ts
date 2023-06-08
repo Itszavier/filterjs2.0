@@ -1,12 +1,13 @@
 import { hasBlacklistWordCallback } from "./filter";
 import { badwords } from "./badwords";
 import { toOrginalCase } from "./utils";
-export function hasBlacklistWord(inputText: string, customBlacklist?: string[], callBack?: hasBlacklistWordCallback) {
+
+export function hasBlacklistWord(inputText?: string, customBlacklist?: string[], callBack?: hasBlacklistWordCallback) {
     if (!inputText) {
         throw new Error("could not find text: please specfic the text you want to check");
     }
 
-    let blacklistWord = customBlacklist || badwords;
+    const blacklistWord = customBlacklist || badwords;
 
 
 
@@ -27,13 +28,13 @@ export function hasBlacklistWord(inputText: string, customBlacklist?: string[], 
     }
 }
 
-export function censor(inputText: string, customblacklist?: string[]) {
+export function censor(inputText?: string, customblacklist?: string[]) {
     if (!inputText) {
         throw new Error("could not find text: please specfic the text you want to censer as paramater")
     }
     const text = inputText;
 
-    let blacklistWords = customblacklist || badwords;
+    const blacklistWords = customblacklist || badwords;
 
 
 
